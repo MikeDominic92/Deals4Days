@@ -29,6 +29,17 @@ def generate_upload_url(filename: str):
     )
     return {"upload_url": url}
 
+@app.get("/health")
+def health_check():
+    return {
+        "status": "healthy",
+        "version": "1.0.0",
+        "services": {
+            "cloud_storage": True,
+            "vertex_ai": True
+        }
+    }
+
 @app.post("/process-video")
 async def process_video(event: dict):
     """Pub/Sub push endpoint"""

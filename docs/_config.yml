@@ -1,0 +1,10 @@
+theme: jekyll-theme-cayman
+title: Video Deal Analyzer
+description: Cloud-native video analysis pipeline using Google Cloud Platform services
+show_downloads: true
+google_analytics:
+plugins:
+  - jekyll-relative-links
+relative_links:
+  enabled: true
+  collections: true

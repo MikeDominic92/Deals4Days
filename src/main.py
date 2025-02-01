@@ -8,7 +8,9 @@ app = FastAPI(title="Video Deal Analyzer")
 storage_client = storage.Client()
 publisher = pubsub_v1.PublisherClient()
 
-PROJECT_ID = "video-deal-analyzer"
+# Environment variables
+PROJECT_ID = "video-analyzer-988420"
+BUCKET_NAME = "video-analyzer-988420-uploads"
 TOPIC_NAME = "video-uploads"
 
 @app.get("/analyze")
@@ -19,7 +21,7 @@ async def analyze_video(gs_url: str):
 @app.post("/upload-url")
 def generate_upload_url(filename: str):
     """Generate secure upload URL"""
-    bucket = storage_client.bucket("video-deal-analyzer-uploads")
+    bucket = storage_client.bucket(BUCKET_NAME)
     blob = bucket.blob(filename)
     
     url = blob.generate_signed_url(
